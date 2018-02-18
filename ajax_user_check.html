@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX USER CHECK</title>
+</head>
+<body>
+	Username:<input type="text" name="username" id="username">
+	<h3 id="ack"></h3>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#username").blur(function(){
+			var username = $(this).val();
+			console.log(username);
+			$.ajax({
+				method:"POST",
+				url:"ajax_user_check.php",
+				data:{user_name:username},
+				dataType:"text",
+				success: function(data){
+					$('#ack').html(data);
+				}
+			})
+		});
+	});
+</script>
